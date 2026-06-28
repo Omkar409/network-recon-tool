@@ -1,6 +1,3 @@
-cd ~/network-recon-tool
-
-cat > network_recon.py << 'PYEOF'
 #!/usr/bin/env python3
 """
 Network Reconnaissance Tool for Kali Linux
@@ -33,7 +30,7 @@ class NetworkRecon:
         self.open_ports = []
         self.banner_results = {}
         self.lock = threading.Lock()
-        self.ports_list = None  # For comma-separated ports
+        self.ports_list = None
         
         self.common_services = {
             21: 'FTP', 22: 'SSH', 23: 'Telnet', 25: 'SMTP',
@@ -90,7 +87,6 @@ class NetworkRecon:
         print(f"{Colors.HEADER}{'='*60}{Colors.ENDC}")
         print(f"Target: {self.target}")
         
-        # Determine which ports to scan
         if self.ports_list:
             ports_to_scan = self.ports_list
             print(f"Ports: {', '.join(map(str, self.ports_list))}")
@@ -173,7 +169,6 @@ Examples:
 
     args = parser.parse_args()
 
-    # Parse port range or comma-separated ports
     if ',' in args.ports:
         ports_list = [int(p.strip()) for p in args.ports.split(',')]
         scanner = NetworkRecon(args.target, threads=args.threads)
@@ -194,8 +189,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print(f"\n{Colors.FAIL}[-] Scan interrupted by user{Colors.ENDC}")
         sys.exit(0)
-PYEOF
-
-chmod +x network_recon.py
-echo "✅ Fixed! Now test it:"
-python3 network_recon.py -t scanme.nmap.org -p 22,80
