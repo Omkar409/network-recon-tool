@@ -14,7 +14,7 @@ A powerful, multi-threaded port scanner with banner grabbing for Kali Linux.
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/network-recon-tool.git
+git clone https://github.com/Omkar409/network-recon-tool.git
 cd network-recon-tool
 chmod +x setup.sh
 ./setup.sh
